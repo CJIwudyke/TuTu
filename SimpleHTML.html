@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Match - Find Your Provider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #0077b6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            background-color: #023e8a;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .post-service, .service-list {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-service h2, .service-list h2 {
+            margin-top: 0;
+        }
+
+        .service-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+        }
+
+        .service-item h3 {
+            margin: 0 0 5px;
+        }
+
+        footer {
+            background-color: #0077b6;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #005f86;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Service Match</h1>
+        <p>Connecting customers with trusted providers</p>
+    </header>
+
+    <nav>
+        <a href="#post-service">Post a Service</a>
+        <a href="#services">Browse Services</a>
+    </nav>
+
+    <main>
+        <section id="post-service" class="post-service">
+            <h2>Post Your Service</h2>
+            <form id="postForm">
+                <label for="serviceType">Service Type</label>
+                <select id="serviceType" required>
+                    <option value="" disabled selected>Select a service</option>
+                    <option value="landscaper">Landscaper</option>
+                    <option value="mechanic">Mechanic</option>
+                    <option value="cleaner">Cleaner</option>
+                    <option value="tutor">Tutor</option>
+                </select>
+
+                <label for="location">Location</label>
+                <input type="text" id="location" placeholder="City or Zip Code" required>
+
+                <label for="description">Service Description</label>
+                <textarea id="description" rows="4" placeholder="Describe the service you offer or need" required></textarea>
+
+                <button type="submit">Post Service</button>
+            </form>
+        </section>
+
+        <section id="services" class="service-list">
+            <h2>Available Services</h2>
+            <div class="service-item">
+                <h3>Green Thumb Landscaping</h3>
+                <p><strong>Location:</strong> Downtown</p>
+                <p><strong>Details:</strong> Professional landscaping services for your garden or lawn.</p>
+            </div>
+            <div class="service-item">
+                <h3>FastFix Mechanics</h3>
+                <p><strong>Location:</strong> Midtown</p>
+                <p><strong>Details:</strong> Reliable car repair and maintenance.</p>
+            </div>
+            <div class="service-item">
+                <h3>Clean Sweep Services</h3>
+                <p><strong>Location:</strong> Uptown</p>
+                <p><strong>Details:</strong> Residential and commercial cleaning services.</p>
+            </div>
+            <div class="service-item">
+                <h3>LearnEase Tutors</h3>
+                <p><strong>Location:</strong> Virtual/Onsite</p>
+                <p><strong>Details:</strong> Math, Science, and English tutoring for all grades.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Service Match. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const postForm = document.getElementById('postForm');
+        const serviceList = document.getElementById('services');
+
+        postForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form values
+            const serviceType = document.getElementById('serviceType').value;
+            const location = document.getElementById('location').value;
+            const description = document.getElementById('description').value;
+
+            // Create new service item
+            const newService = document.createElement('div');
+            newService.classList.add('service-item');
+            newService.innerHTML = `
+                <h3>${serviceType}</h3>
+                <p><strong>Location:</strong> ${location}</p>
+                <p><strong>Details:</strong> ${description}</p>
+            `;
+
+            // Append to service list
+            serviceList.appendChild(newService);
+
+            // Clear form
+            postForm.reset();
+        });
+    </script>
+</body>
+
+</html>
+
